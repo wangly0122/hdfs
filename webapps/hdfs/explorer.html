@@ -17,98 +17,392 @@
     limitations under the License.
   -->
 <html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=9" />
-    <link rel="stylesheet" type="text/css" href="/static/bootstrap-3.0.2/css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="/static/hadoop.css" />
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap-3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/hadoop.css">
     <title>Browsing HDFS</title>
-  </head>
-  <body>
+</head>
 
-    <header class="navbar navbar-inverse bs-docs-nav" role="banner">
-    <div class="container">
-      <div class="navbar-header">
-        <div class="navbar-brand">Hadoop</div>
-      </div>
+<body>
 
-      <ul class="nav navbar-nav" id="ui-tabs">
-        <li><a href="dfshealth.html#tab-overview">Overview</a></li>
-        <li><a href="dfshealth.html#tab-datanode">Datanodes</a></li>
-        <li><a href="dfshealth.html#tab-datanode-volume-failures">Datanode Volume Failures</a></li>
-        <li><a href="dfshealth.html#tab-snapshot">Snapshot</a></li>
-        <li><a href="dfshealth.html#tab-startup-progress">Startup Progress</a></li>
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilities <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Browse the file system</a></li>
-            <li><a href="logs">Logs</a></li>
-          </ul>
-        </li>
-      </ul>
+
+<div class="modal" id="file-info" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="file-info-title">File information</h4>
+            </div>
+            <div class="modal-body" id="file-info-body">
+                <a id="file-info-download">Download</a>
+                <!--<a id="file-info-preview" style="cursor:pointer">Tail the file (last 32K)</a>-->
+                <hr>
+                <div class="panel panel-success" id="file-info-blockinfo-panel">
+                    <div class="panel-heading">
+                        块信息Block information --
+                        <select class="btn btn-default" id="file-info-blockinfo-list">
+                        </select>
+                    </div>
+                    <div class="panel-body" id="file-info-blockinfo-body"></div>
+                </div>
+                <div class="panel panel-info" id="file-info-tail" style="display:none">
+                    <div class="panel-heading">File contents</div>
+                    <div class="panel-body">
+                        <div class="input-group-sm">
+                            <textarea class="form-control" style="height: 150px" id="file-info-preview-body"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-    </header>
-
-    <div class="modal" id="file-info" tabindex="-1" role="dialog" aria-hidden="true">
-      <div class="modal-dialog">
-	<div class="modal-content">
-	  <div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h4 class="modal-title" id="file-info-title">File information</h4>
-	  </div>
-	  <div class="modal-body" id="file-info-body">
-	    <a id="file-info-download">Download</a>
-        <!--<a id="file-info-preview" style="cursor:pointer">Tail the file (last 32K)</a>-->
-	    <hr />
-	    <div class="panel panel-success" id="file-info-blockinfo-panel">
-	      <div class="panel-heading">
-		块信息Block information -- 
-		<select class="btn btn-default" id="file-info-blockinfo-list">
-		</select>
-	      </div>
-	      <div class="panel-body" id="file-info-blockinfo-body"></div>
-	    </div>
-	    <div class="panel panel-info" id="file-info-tail" style="display:none">
-	      <div class="panel-heading">File contents</div>
-	      <div class="panel-body">
-		<div class="input-group-sm">
-		<textarea class="form-control" style="height: 150px" id="file-info-preview-body"></textarea>
-		</div>
-	      </div>
-	    </div>
-	  </div>
-	  <div class="modal-footer"><button type="button" class="btn btn-success"
-					    data-dismiss="modal">Close</button></div>
-	</div>
-      </div>
+</div>
+<div class="container">
+    <div class="page-header">
+        <h1>浏览目录 (Browse Directory)</h1>
     </div>
-    <div class="container">
-      <div class="page-header">
-	<h1>浏览目录 (Browse Directory)</h1>
-      </div>
-      <div class="alert alert-danger" id="alert-panel" style="display:none">
-	<button type="button" class="close" onclick="$('#alert-panel').hide();">&times;</button>
-	<div class="alert-body" id="alert-panel-body"></div>
-      </div>
-      <div class="row">
-	<form onsubmit="return false;">
-	  <div class="input-group"><input type="text" class="form-control" id=
-					  "directory" /> <span class="input-group-btn"><button class="btn btn-default"
-											       type="submit" id="btn-nav-directory"><span class="input-group-btn">Go!</span></button></span></div>
-	</form>
-      </div>
-      <br />
-      <div id="panel"></div>
-
-      <div class="row">
-        <hr />
-        <div class="col-xs-2"><p>Hadoop, 2016.</p></div>
-      </div>
-
+    <div class="alert alert-danger" id="alert-panel" style="display:none">
+        <button type="button" class="close" onclick="$('#alert-panel').hide();">×</button>
+        <div class="alert-body" id="alert-panel-body"></div>
+    </div>
+    <div class="row">
+        <form onsubmit="return false;">
+            <div class="input-group"><input type="text" class="form-control" id="directory"> <span class="input-group-btn"><button class="btn btn-default"
+                                                                                                                                   type="submit"
+                                                                                                                                   id="btn-nav-directory"><span
+                class="input-group-btn">Go!</span></button>
+          </span>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div id="panel">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>权限Permission</th>
+                <th>Owner</th>
+                <th>Group</th>
+                <th>Size</th>
+                <th>Last Modified</th>
+                <th>Replication</th>
+                <th>Block Size</th>
+                <th>Name</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>linkoop</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/8/14 下午9:25:25</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="anzhen">anzhen</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2019/2/28 下午6:45:45</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="app">app</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>yarn</td>
+                <td>hadoop</td>
+                <td>0 B</td>
+                <td>2019/4/10 下午6:40:44</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="app-logs">app-logs</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/7/13 下午6:27:31</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="apps">apps</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>yarn</td>
+                <td>hadoop</td>
+                <td>0 B</td>
+                <td>2018/7/5 上午10:40:40</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="ats">ats</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/11/29 下午9:21:07</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="chinamobilepoc">chinamobilepoc</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>weiying</td>
+                <td>weiying</td>
+                <td>0 B</td>
+                <td>2019/1/10 下午4:42:22</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="customer">customer</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>linkoop</td>
+                <td>linkoop</td>
+                <td>0 B</td>
+                <td>2018/8/24 下午8:19:45</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="demodatain">demodatain</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>linkoop</td>
+                <td>linkoop</td>
+                <td>0 B</td>
+                <td>2018/8/14 上午11:20:20</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="demodataout">demodataout</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/7/5 上午10:40:49</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="hdp">hdp</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>mapred</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/7/5 上午10:40:47</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="mapred">mapred</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>mapred</td>
+                <td>hadoop</td>
+                <td>0 B</td>
+                <td>2018/7/5 上午10:41:10</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="mr-history">mr-history</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2019/2/20 下午7:53:47</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node1">node1</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>zhangyx</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/11/9 上午10:16:13</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node10">node10</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxr-x</td>
+                <td>linkoop</td>
+                <td>hadoop</td>
+                <td>0 B</td>
+                <td>2018/9/11 下午12:05:41</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node2">node2</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/10/31 下午7:53:17</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node3">node3</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/9/11 下午12:06:27</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node4">node4</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/11/19 下午2:50:02</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node5">node5</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/9/28 下午5:48:14</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node6">node6</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/12/4 下午4:23:52</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node7">node7</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/12/3 下午3:19:43</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node8">node8</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/11/8 下午6:05:40</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="node9">node9</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>spark</td>
+                <td>hadoop</td>
+                <td>0 B</td>
+                <td>2019/1/15 上午1:07:03</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="spark2-history">spark2-history</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/11/8 下午6:33:09</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="table">table</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2019/2/1 下午2:00:14</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="test">test</a></td>
+            </tr>
+            <tr>
+                <td>drwxr-xr-x</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2018/12/11 下午2:16:34</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="test91">test91</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2019/4/3 上午10:11:44</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="tmp">tmp</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2019/1/28 下午4:37:59</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="tpcdsdata">tpcdsdata</a></td>
+            </tr>
+            <tr>
+                <td>drwxrwxrwx</td>
+                <td>hdfs</td>
+                <td>hdfs</td>
+                <td>0 B</td>
+                <td>2019/4/15 下午8:28:36</td>
+                <td>0</td>
+                <td>0 B</td>
+                <td><a style="cursor:pointer" inode-type="DIRECTORY" class="explorer-browse-links" inode-path="user">user</a></td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 
-    <script type="text/x-dust-template" id="tmpl-explorer">
-      <table class="table">
+    <div class="row">
+        <hr>
+        <div class="col-xs-2">
+            <p>Hadoop, 2016.</p>
+        </div>
+    </div>
+
+</div>
+
+<script type="text/x-dust-template" id="tmpl-explorer">
+    <table class="table">
         <thead>
-          <tr>
+        <tr>
             <th>权限Permission</th>
             <th>Owner</th>
             <th>Group</th>
@@ -117,11 +411,11 @@
             <th>Replication</th>
             <th>Block Size</th>
             <th>Name</th>
-          </tr>
+        </tr>
         </thead>
         <tbody>
-          {#FileStatus}
-          <tr>
+        {#FileStatus}
+        <tr>
             <td>{type|helper_to_directory}{permission|helper_to_permission}{aclBit|helper_to_acl_bit}</td>
             <td>{owner}</td>
             <td>{group}</td>
@@ -130,34 +424,50 @@
             <td>{replication}</td>
             <td>{blockSize|fmt_bytes}</td>
             <td><a style="cursor:pointer" inode-type="{type}" class="explorer-browse-links" inode-path="{pathSuffix}">{pathSuffix}</a></td>
-          </tr>
-          {/FileStatus}
+        </tr>
+        {/FileStatus}
         </tbody>
-      </table>
-    </script>
+    </table>
+</script>
 
-    <script type="text/x-dust-template" id="tmpl-block-info">
-      {#block}
-      <p>Block ID: {blockId}</p>
-      <p>Block Pool ID: {blockPoolId}</p>
-      <p>Generation Stamp: {generationStamp}</p>
-      <p>Size: {numBytes}</p>
-      {/block}
-      <p>Availability:
-        <ul>
-          {#locations}
-          <li>{hostName}</li>
-          {/locations}
-        </ul>
-      </p>
-    </script>
-    <script type="text/javascript" src="/static/jquery-1.10.2.min.js">
-    </script><script type="text/javascript" src="/static/bootstrap-3.0.2/js/bootstrap.min.js">
-    </script><script type="text/javascript" src="/static/dust-full-2.0.0.min.js">
-    </script><script type="text/javascript" src="/static/dust-helpers-1.1.1.min.js">
-    </script><script type="text/javascript" src="/static/dfs-dust.js">
-    </script><script type="text/javascript" src="/static/rest-csrf.js">
-    </script><script type="text/javascript" src="explorer.js">
-    </script>
-  </body>
+<script type="text/x-dust-template" id="tmpl-block-info">
+    {#block}
+    <p>Block ID: {blockId}</p>
+    <p>Block Pool ID: {blockPoolId}</p>
+    <p>Generation Stamp: {generationStamp}</p>
+    <p>Size: {numBytes}</p>
+    {/block}
+    <p>Availability:
+    <ul>
+        {#locations}
+        <li>{hostName}</li>
+        {/locations}
+    </ul>
+    </p>
+</script>
+<script type="text/javascript" src="/static/jquery-1.10.2.min.js">
+
+</script>
+<script type="text/javascript" src="/static/bootstrap-3.0.2/js/bootstrap.min.js">
+
+</script>
+<script type="text/javascript" src="/static/dust-full-2.0.0.min.js">
+
+</script>
+<script type="text/javascript" src="/static/dust-helpers-1.1.1.min.js">
+
+</script>
+<script type="text/javascript" src="/static/dfs-dust.js">
+
+</script>
+<script type="text/javascript" src="/static/rest-csrf.js">
+
+</script>
+<script type="text/javascript" src="explorer.js">
+
+</script>
+
+
+</body>
+
 </html>

@@ -1,446 +1,993 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-   Licensed to the Apache Software Foundation (ASF) under one or more
-   contributor license agreements.  See the NOTICE file distributed with
-   this work for additional information regarding copyright ownership.
-   The ASF licenses this file to You under the Apache License, Version 2.0
-   (the "License"); you may not use this file except in compliance with
-   the License.  You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
--->
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-<meta http-equiv="X-UA-Compatible" content="IE=9" />
-<link rel="stylesheet" type="text/css" href="../static/bootstrap-3.0.2/css/bootstrap.min.css" />
-<link rel="stylesheet" type="text/css" href="../static/dataTables.bootstrap.css" />
-<link rel="stylesheet" type="text/css" href="../static/hadoop.css" />
-<title>Namenode information</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=9">
+    <link rel="stylesheet" type="text/css" href="/static/bootstrap-3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/static/dataTables.bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/static/hadoop.css">
+    <title>Namenode information</title>
 </head>
+
 <body>
-
-<header class="navbar navbar-inverse bs-docs-nav" role="banner">
-<div class="container">
-  <div class="navbar-header">
-    <div class="navbar-brand">Hadoop</div>
-  </div>
-
-  <ul class="nav navbar-nav" id="ui-tabs">
-    <li><a href="#tab-overview">Overview</a></li>
-    <li><a href="#tab-datanode">Datanodes</a></li>
-    <li><a href="#tab-datanode-volume-failures">Datanode Volume Failures</a></li>
-    <li><a href="#tab-snapshot">Snapshot</a></li>
-    <li><a href="#tab-startup-progress">Startup Progress</a></li>
-    <li class="dropdown">
-      <a href="#" class="dropdown-toggle" data-toggle="dropdown">Utilities <b class="caret"></b></a>
-      <ul class="dropdown-menu">
-        <li><a href="explorer.html">Browse the file system</a></li>
-        <li><a href="logs">Logs</a></li>
-      </ul>
-    </li>
-  </ul>
-</div>
-</header>
-
 <div class="container">
 
-<div id="alert-panel">
-  <div class="alert alert-danger">
-    <button type="button" class="close" onclick="$('#alert-panel').hide();">&times;</button>
-    <div class="alert-body" id="alert-panel-body"></div>
-  </div>
-</div>
+    <div id="alert-panel">
+        <div class="alert alert-danger">
+            <button type="button" class="close" onclick="$('#alert-panel').hide();">×</button>
+            <div class="alert-body" id="alert-panel-body"></div>
+        </div>
+    </div>
 
-<div class="tab-content">
-  <div class="tab-pane" id="tab-overview"></div>
-  <div class="tab-pane" id="tab-datanode"></div>
-  <div class="tab-pane" id="tab-datanode-volume-failures"></div>
-  <div class="tab-pane" id="tab-snapshot"></div>
-  <div class="tab-pane" id="tab-startup-progress"></div>
-</div>
+    <div class="tab-content">
+        <div class="tab-pane" id="tab-overview">
+            <div class="page-header">
+                <h1>Overview
+                    <small>'node1:8020' (active)</small>
+                </h1>
+            </div>
+            <table class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <th>Started:</th>
+                    <td>Sat Apr 20 12:10:20 CST 2019</td>
+                </tr>
+                <tr>
+                    <th>Version:</th>
+                    <td>2.7.3.2.6.5.0-292, r3091053c59a62c82d82c9f778c48bde5ef0a89a1</td>
+                </tr>
+                <tr>
+                    <th>Compiled:</th>
+                    <td>2018-05-11T07:53Z by jenkins from (detached from 3091053)</td>
+                </tr>
+                <tr>
+                    <th>Cluster ID:</th>
+                    <td>CID-919c72f0-2c51-4602-b083-5c51d92f1d95</td>
+                </tr>
+                <tr>
+                    <th>Block Pool ID:</th>
+                    <td>BP-103401787-192.168.1.70-1530758422622</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="page-header">
+                <h1>Summary</h1>
+            </div>
+            <p>Security is off.</p>
+            <p>Safemode is off.</p>
+            <p>2894867 files and directories, 1015378 blocks = 3910245 total filesystem object(s).</p>
+            <p>Heap Memory used 896.45 MB of 2.96 GB Heap Memory. Max Heap Memory is 2.96 GB.</p>
+            <p>Non Heap Memory used 87.54 MB of 89.6 MB Commited Non Heap Memory. Max Non Heap Memory is &lt;unbonded&gt;.</p>
+            <table
+                class="table table-bordered table-striped">
+                <tbody>
+                <tr>
+                    <th> Configured Capacity:</th>
+                    <td>65.81 TB</td>
+                </tr>
+                <tr>
+                    <th> DFS Used:</th>
+                    <td>35.95 TB (54.62%)</td>
+                </tr>
+                <tr>
+                    <th> Non DFS Used:</th>
+                    <td>2.05 TB</td>
+                </tr>
+                <tr>
+                    <th> DFS Remaining:</th>
+                    <td>23.99 TB (36.45%)</td>
+                </tr>
+                <tr>
+                    <th> Block Pool Used:</th>
+                    <td>35.95 TB (54.62%)</td>
+                </tr>
+                <tr>
+                    <th> DataNodes usages% (Min/Median/Max/stdDev):</th>
+                    <td>36.42% / 59.49% / 66.33% / 9.75%</td>
+                </tr>
+                <tr>
+                    <th><a href="#tab-datanode">Live Nodes</a></th>
+                    <td>10 (Decommissioned: 0)</td>
+                </tr>
+                <tr>
+                    <th><a href="#tab-datanode">Dead Nodes</a></th>
+                    <td>0 (Decommissioned: 0)</td>
+                </tr>
+                <tr>
+                    <th><a href="#tab-datanode">Decommissioning Nodes</a></th>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th><a href="#tab-datanode-volume-failures">Total Datanode Volume Failures</a></th>
+                    <td>0 (0 B)</td>
+                </tr>
+                <tr>
+                    <th title="Excludes missing blocks.">Number of Under-Replicated Blocks</th>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Number of Blocks Pending Deletion</th>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <th>Block Deletion Start Time</th>
+                    <td>2019/4/20 下午1:10:20</td>
+                </tr>
+                <tr>
+                    <th>Last Checkpoint Time</th>
+                    <td>2019/4/20 下午12:23:59</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="page-header">
+                <h1>NameNode Journal Status</h1>
+            </div>
+            <p><b>Current transaction ID:</b> 484022766</p>
+            <table class="table" title="NameNode Journals">
+                <thead>
+                <tr>
+                    <th>Journal Manager</th>
+                    <th>State</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>FileJournalManager(root=/data1/hadoop/hdfs/namenode)</td>
+                    <td>EditLogFileOutputStream(/data1/hadoop/hdfs/namenode/current/edits_inprogress_0000000000484021258)</td>
+                </tr>
+                <tr>
+                    <td>FileJournalManager(root=/data2/hadoop/hdfs/namenode)</td>
+                    <td>EditLogFileOutputStream(/data2/hadoop/hdfs/namenode/current/edits_inprogress_0000000000484021258)</td>
+                </tr>
+                <tr>
+                    <td>FileJournalManager(root=/data3/hadoop/hdfs/namenode)</td>
+                    <td>EditLogFileOutputStream(/data3/hadoop/hdfs/namenode/current/edits_inprogress_0000000000484021258)</td>
+                </tr>
+                <tr>
+                    <td>FileJournalManager(root=/data4/hadoop/hdfs/namenode)</td>
+                    <td>EditLogFileOutputStream(/data4/hadoop/hdfs/namenode/current/edits_inprogress_0000000000484021258)</td>
+                </tr>
+                <tr>
+                    <td>FileJournalManager(root=/data5/hadoop/hdfs/namenode)</td>
+                    <td>EditLogFileOutputStream(/data5/hadoop/hdfs/namenode/current/edits_inprogress_0000000000484021258)</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="page-header">
+                <h1>NameNode Storage</h1>
+            </div>
+            <table class="table" title="NameNode Storage">
+                <thead>
+                <tr>
+                    <td><b>Storage Directory</b></td>
+                    <td><b>Type</b></td>
+                    <td><b>State</b></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>/data2/hadoop/hdfs/namenode</td>
+                    <td>IMAGE_AND_EDITS</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>/data5/hadoop/hdfs/namenode</td>
+                    <td>IMAGE_AND_EDITS</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>/data1/hadoop/hdfs/namenode</td>
+                    <td>IMAGE_AND_EDITS</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>/data4/hadoop/hdfs/namenode</td>
+                    <td>IMAGE_AND_EDITS</td>
+                    <td>Active</td>
+                </tr>
+                <tr>
+                    <td>/data3/hadoop/hdfs/namenode</td>
+                    <td>IMAGE_AND_EDITS</td>
+                    <td>Active</td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="page-header">
+                <h1>DFS Storage Types</h1>
+            </div>
+            <small>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Storage Type</th>
+                        <th>Configured Capacity</th>
+                        <th>Capacity Used</th>
+                        <th>Capacity Remaining</th>
+                        <th>Block Pool Used</th>
+                        <th>Nodes In Service</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>DISK</td>
+                        <td>65.81 TB</td>
+                        <td>35.95 TB (54.62%)</td>
+                        <td>23.99 TB (36.45%)</td>
+                        <td>35.95 TB</td>
+                        <td>10</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </small>
+        </div>
+        <div class="tab-pane active" id="tab-datanode">
+            <div class="page-header"></div>
+            <small>
+                <div id="table-datanodes_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="dataTables_length" id="table-datanodes_length"><label>Show <select name="table-datanodes_length"
+                                                                                                           aria-controls="table-datanodes"
+                                                                                                           class="form-control input-sm">
+                                <option value="25">25</option>
+                                <option value="50">50</option>
+                                <option value="100">100</option>
+                                <option value="-1">All</option>
+                            </select> entries</label></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div id="table-datanodes_filter" class="dataTables_filter"><label>Search:<input type="search" class="form-control input-sm"
+                                                                                                            placeholder=""
+                                                                                                            aria-controls="table-datanodes"></label></div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table dataTable no-footer" id="table-datanodes" role="grid" aria-describedby="table-datanodes_info">
+                                <thead>
+                                <tr role="row">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="table-datanodes" rowspan="1" colspan="1" aria-sort="ascending"
+                                        aria-label="Node: activate to sort column descending" style="width: 0px;">Node
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-datanodes" rowspan="1" colspan="1"
+                                        aria-label="Http Address: activate to sort column ascending" style="width: 0px;">Http Address
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-datanodes" rowspan="1" colspan="1"
+                                        aria-label="Last contact: activate to sort column ascending" style="width: 0px;">Last contact
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-datanodes" rowspan="1" colspan="1"
+                                        aria-label="Last Block Report: activate to sort column ascending" style="width: 0px;">Last Block Report
+                                    </th>
+                                    <th style="width:180px; text-align:center" class="sorting" tabindex="0" aria-controls="table-datanodes" rowspan="1"
+                                        colspan="1" aria-label="Capacity: activate to sort column ascending">Capacity
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-datanodes" rowspan="1" colspan="1"
+                                        aria-label="Blocks: activate to sort column ascending" style="width: 0px;">Blocks
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-datanodes" rowspan="1" colspan="1"
+                                        aria-label="Block pool used: activate to sort column ascending" style="width: 0px;">Block pool used
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="table-datanodes" rowspan="1" colspan="1"
+                                        aria-label="Version: activate to sort column ascending" style="width: 0px;">Version
+                                    </th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr role="row" class="odd">
+                                    <td ng-value="alive-node10:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node10:50010
+                                        (192.168.1.80:50010)
+                                    </td>
+                                    <td ng-value="alive-node10:50010"><a href="//node10:50075">node10:50075</a></td>
+                                    <td ng-value="2">2s</td>
+                                    <td ng-value="160">160m</td>
+                                    <td ng-value="36">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">4.7 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 0 B, Used: 1.71 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 36%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">145826</td>
+                                    <td ng-value="36.424606">1.71 TB (36.42%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td ng-value="alive-node1:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node1:50010
+                                        (192.168.1.70:50010)
+                                    </td>
+                                    <td ng-value="alive-node1:50010"><a href="//node1:50075">node1:50075</a></td>
+                                    <td ng-value="2">2s</td>
+                                    <td ng-value="169">169m</td>
+                                    <td ng-value="65">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">7.83 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 239.12 GB, Used: 4.86 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 65%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">386430</td>
+                                    <td ng-value="61.980213">4.86 TB (61.98%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td ng-value="alive-node2:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node2:50010
+                                        (192.168.1.71:50010)
+                                    </td>
+                                    <td ng-value="alive-node2:50010"><a href="//node2:50075">node2:50075</a></td>
+                                    <td ng-value="2">2s</td>
+                                    <td ng-value="165">165m</td>
+                                    <td ng-value="65">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">7.83 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 354.74 GB, Used: 4.72 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 65%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">391296</td>
+                                    <td ng-value="60.277637">4.72 TB (60.28%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td ng-value="alive-node3:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node3:50010
+                                        (192.168.1.72:50010)
+                                    </td>
+                                    <td ng-value="alive-node3:50010"><a href="//node3:50075">node3:50075</a></td>
+                                    <td ng-value="2">2s</td>
+                                    <td ng-value="168">168m</td>
+                                    <td ng-value="61">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">7.83 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 161.4 GB, Used: 4.66 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 61%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">358343</td>
+                                    <td ng-value="59.48678">4.66 TB (59.49%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td ng-value="alive-node4:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node4:50010
+                                        (192.168.1.73:50010)
+                                    </td>
+                                    <td ng-value="alive-node4:50010"><a href="//node4:50075">node4:50075</a></td>
+                                    <td ng-value="0">0s</td>
+                                    <td ng-value="168">168m</td>
+                                    <td ng-value="66">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">7.83 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 0 B, Used: 5.2 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 66%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">461367</td>
+                                    <td ng-value="66.33199">5.2 TB (66.33%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td ng-value="alive-node5:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node5:50010
+                                        (192.168.1.74:50010)
+                                    </td>
+                                    <td ng-value="alive-node5:50010"><a href="//node5:50075">node5:50075</a></td>
+                                    <td ng-value="0">0s</td>
+                                    <td ng-value="162">162m</td>
+                                    <td ng-value="66">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">7.83 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 426.37 GB, Used: 4.74 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 66%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">413363</td>
+                                    <td ng-value="60.53243">4.74 TB (60.53%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td ng-value="alive-node6:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node6:50010
+                                        (192.168.1.75:50010)
+                                    </td>
+                                    <td ng-value="alive-node6:50010"><a href="//node6:50075">node6:50075</a></td>
+                                    <td ng-value="1">1s</td>
+                                    <td ng-value="168">168m</td>
+                                    <td ng-value="60">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">7.83 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 917.36 GB, Used: 3.78 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 60%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">297717</td>
+                                    <td ng-value="48.30889">3.78 TB (48.31%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td ng-value="alive-node7:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node7:50010
+                                        (192.168.1.77:50010)
+                                    </td>
+                                    <td ng-value="alive-node7:50010"><a href="//node7:50075">node7:50075</a></td>
+                                    <td ng-value="2">2s</td>
+                                    <td ng-value="81">81m</td>
+                                    <td ng-value="46">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">4.7 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 0 B, Used: 2.16 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 46%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">214920</td>
+                                    <td ng-value="45.99855">2.16 TB (46%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="odd">
+                                    <td ng-value="alive-node8:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node8:50010
+                                        (192.168.1.78:50010)
+                                    </td>
+                                    <td ng-value="alive-node8:50010"><a href="//node8:50075">node8:50075</a></td>
+                                    <td ng-value="1">1s</td>
+                                    <td ng-value="162">162m</td>
+                                    <td ng-value="40">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">4.7 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 0 B, Used: 1.89 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 40%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">175321</td>
+                                    <td ng-value="40.235165">1.89 TB (40.24%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                <tr role="row" class="even">
+                                    <td ng-value="alive-node9:50010" class="dfshealth-node-icon dfshealth-node-alive sorting_1">node9:50010
+                                        (192.168.1.79:50010)
+                                    </td>
+                                    <td ng-value="alive-node9:50010"><a href="//node9:50075">node9:50075</a></td>
+                                    <td ng-value="2">2s</td>
+                                    <td ng-value="161">161m</td>
+                                    <td ng-value="47">
+                                        <div>
+                                            <div style="display:inline-block; float: left; padding-right: 10px;">4.7 TB</div>
+                                            <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: 0 B, Used: 2.22 TB">
+                                                <div class="progress-bar progress-bar-success" style="width: 47%"></div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td title="Blocks Scheduled : 0">197102</td>
+                                    <td ng-value="47.196354">2.22 TB (47.2%)</td>
+                                    <td>2.7.3.2.6.5.0-292</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="dataTables_info" id="table-datanodes_info" role="status" aria-live="polite">Showing 1 to 10 of 10 entries</div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="dataTables_paginate paging_simple_numbers" id="table-datanodes_paginate">
+                                <ul class="pagination">
+                                    <li class="paginate_button previous disabled" id="table-datanodes_previous"><a href="#" aria-controls="table-datanodes"
+                                                                                                                   data-dt-idx="0" tabindex="0">Previous</a>
+                                    </li>
+                                    <li class="paginate_button active"><a href="#" aria-controls="table-datanodes" data-dt-idx="1" tabindex="0">1</a></li>
+                                    <li class="paginate_button next disabled" id="table-datanodes_next"><a href="#" aria-controls="table-datanodes"
+                                                                                                           data-dt-idx="2" tabindex="0">Next</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </small>
+            <div
+                class="page-header">
+                <h1>
+                    <small>Decomissioning</small>
+                </h1>
+            </div>
+            <small>
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Node</th>
+                        <th>Last contact</th>
+                        <th>Under replicated blocks</th>
+                        <th>Blocks with no live replicas</th>
+                        <th>Under Replicated Blocks <br>In files under construction</th>
+                    </tr>
+                    </thead>
+                </table>
+            </small>
+        </div>
+        <div class="tab-pane" id="tab-datanode-volume-failures"></div>
+        <div class="tab-pane" id="tab-snapshot"></div>
+        <div class="tab-pane" id="tab-startup-progress"></div>
+    </div>
 
-<div class="row">
-  <hr />
-  <div class="col-xs-2"><p>Hadoop, 2016.</p></div>
-</div>
+    <div class="row">
+        <hr>
+        <div class="col-xs-2">
+            <p>Hadoop, 2016.</p>
+        </div>
+    </div>
 </div>
 
 <script type="text/x-dust-template" id="tmpl-dfshealth">
 
-{#nn}
-{@if cond="{DistinctVersionCount} > 1 || '{RollingUpgradeStatus}'.length || !'{UpgradeFinalized}'"}
-<div class="alert alert-dismissable alert-info">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    {#nn} {@if cond="{DistinctVersionCount} > 1 || '{RollingUpgradeStatus}'.length || !'{UpgradeFinalized}'"}
+    <div class="alert alert-dismissable alert-info">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {#RollingUpgradeStatus}
+        {@if cond="{finalizeTime} > 0"}
+        <p>Rolling upgrade finalized at {#helper_date_tostring value="{finalizeTime}"/}. </p>
+        {:else}
+        <p>Rolling upgrade started at {#helper_date_tostring value="{startTime}"/}. </br>
+            {#createdRollbackImages} Rollback image has been created. Proceed to upgrade daemons. {:else} Rollback image has not been
+            created. {/createdRollbackImages}
+        </p>
+        {/if} {/RollingUpgradeStatus} {@if cond="{DistinctVersionCount} > 1"} There are {DistinctVersionCount} versions of datanodes
+        currently live: {#DistinctVersions} {key} ({value}) {@sep},{/sep} {/DistinctVersions} {/if} {^UpgradeFinalized}
+        <p>Upgrade in progress. Not yet finalized.</p>
+        {/UpgradeFinalized}
+    </div>
+    {/if} {@eq key=nnstat.State value="active"} {@if cond="{NumberOfMissingBlocks} > 0"}
+    <div class="alert alert-dismissable alert-warning">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
 
-  {#RollingUpgradeStatus}
-   {@if cond="{finalizeTime} > 0"}
-      <p>Rolling upgrade finalized at {#helper_date_tostring value="{finalizeTime}"/}. </p>
-   {:else}
-    <p>Rolling upgrade started at {#helper_date_tostring value="{startTime}"/}. </br>
-    {#createdRollbackImages}
-      Rollback image has been created. Proceed to upgrade daemons.
-      {:else}
-      Rollback image has not been created.
-    {/createdRollbackImages}
+        <p>There are {NumberOfMissingBlocks} missing blocks. The following files may be corrupted:</p>
+        <br/>
+        <div class="well">
+            {#CorruptFiles} {.}
+            <br/> {/CorruptFiles}
+        </div>
+        <p>Please check the logs or run fsck in order to identify the missing blocks. See the Hadoop FAQ for common causes and
+            potential solutions.</p>
+    </div>
+    {/if} {/eq} {/nn}
+
+    <div class="page-header">
+        <h1>Overview {#nnstat}
+            <small>'{HostAndPort}' ({State})</small>
+            {/nnstat}
+        </h1>
+    </div>
+
+    <table class="table table-bordered table-striped">
+        {#HAInfo}
+        <tr>
+            <th>Namespace:</th>
+            <td>{Namespace}</td>
+        </tr>
+        <tr>
+            <th>Namenode ID:</th>
+            <td>{NamenodeID}</td>
+        </tr>
+        {/HAInfo} {#nn}
+        <tr>
+            <th>Started:</th>
+            <td>{NNStarted}</td>
+        </tr>
+        <tr>
+            <th>Version:</th>
+            <td>{Version}</td>
+        </tr>
+        <tr>
+            <th>Compiled:</th>
+            <td>{CompileInfo}</td>
+        </tr>
+        <tr>
+            <th>Cluster ID:</th>
+            <td>{ClusterId}</td>
+        </tr>
+        <tr>
+            <th>Block Pool ID:</th>
+            <td>{BlockPoolId}</td>
+        </tr>
+        {/nn}
+    </table>
+
+    <div class="page-header">
+        <h1>Summary</h1>
+    </div>
+    <p>
+        Security is {#nnstat}{#SecurityEnabled}on{:else}off{/SecurityEnabled}{/nnstat}.</p>
+    <p>{#nn}{#Safemode}{.}{:else}Safemode is off.{/Safemode}{/nn}</p>
+
+    <p>
+        {#fs} {FilesTotal} files and directories, {BlocksTotal} blocks = {@math key="{FilesTotal}" method="add" operand="{BlocksTotal}"/}
+        total filesystem object(s). {#helper_fs_max_objects/} {/fs}
     </p>
-   {/if}
-  {/RollingUpgradeStatus}
+    {#mem.HeapMemoryUsage}
+    <p>Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Heap Memory. Max Heap Memory is {@eq key=max value="-1"
+        type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>
+    {/mem.HeapMemoryUsage} {#mem.NonHeapMemoryUsage}
+    <p>Non Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Commited Non Heap Memory. Max Non Heap Memory is {@eq
+        key=max value="-1" type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>
+    {/mem.NonHeapMemoryUsage} {#nn}
+    <table class="table table-bordered table-striped">
+        <tr>
+            <th> Configured Capacity:</th>
+            <td>{Total|fmt_bytes}</td>
+        </tr>
+        <tr>
+            <th> DFS Used:</th>
+            <td>{Used|fmt_bytes} ({PercentUsed|fmt_percentage})</td>
+        </tr>
+        <tr>
+            <th> Non DFS Used:</th>
+            <td>{NonDfsUsedSpace|fmt_bytes}</td>
+        </tr>
+        <tr>
+            <th> DFS Remaining:</th>
+            <td>{Free|fmt_bytes} ({PercentRemaining|fmt_percentage})</td>
+        </tr>
+        <tr>
+            <th> Block Pool Used:</th>
+            <td>{BlockPoolUsedSpace|fmt_bytes} ({PercentBlockPoolUsed|fmt_percentage})</td>
+        </tr>
+        <tr>
+            <th> DataNodes usages% (Min/Median/Max/stdDev):</th>
+            <td>{#NodeUsage.nodeUsage}{min} / {median} / {max} / {stdDev}{/NodeUsage.nodeUsage}</td>
+        </tr>
+        {/nn} {#fs}
+        <tr>
+            <th><a href="#tab-datanode">Live Nodes</a></th>
+            <td>{NumLiveDataNodes} (Decommissioned: {NumDecomLiveDataNodes})</td>
+        </tr>
+        <tr>
+            <th><a href="#tab-datanode">Dead Nodes</a></th>
+            <td>{NumDeadDataNodes} (Decommissioned: {NumDecomDeadDataNodes})</td>
+        </tr>
+        <tr>
+            <th><a href="#tab-datanode">Decommissioning Nodes</a></th>
+            <td>{NumDecommissioningDataNodes}</td>
+        </tr>
+        <tr>
+            <th><a href="#tab-datanode-volume-failures">Total Datanode Volume Failures</a></th>
+            <td>{VolumeFailuresTotal} ({EstimatedCapacityLostTotal|fmt_bytes})</td>
+        </tr>
+        {@eq key=nnstat.State value="active"}
+        <tr>
+            <th title="Excludes missing blocks.">Number of Under-Replicated Blocks</th>
+            <td>{UnderReplicatedBlocks}</td>
+        </tr>
+        <tr>
+            <th>Number of Blocks Pending Deletion</th>
+            <td>{PendingDeletionBlocks}</td>
+        </tr>
+        {/eq}
+        <tr>
+            <th>Block Deletion Start Time</th>
+            <td>{BlockDeletionStartTime|date_tostring}</td>
+        </tr>
+        {/fs} {#fsn}
+        <tr>
+            <th>Last Checkpoint Time</th>
+            <td>{@if cond="{LastCheckpointTime} === 0"}Never{:else}{LastCheckpointTime|date_tostring}{/if}</td>
+        </tr>
+        {/fsn}
+    </table>
 
-  {@if cond="{DistinctVersionCount} > 1"}
-    There are {DistinctVersionCount} versions of datanodes currently live:
-    {#DistinctVersions}
-    {key} ({value}) {@sep},{/sep}
-    {/DistinctVersions}
-  {/if}
+    <div class="page-header">
+        <h1>NameNode Journal Status</h1>
+    </div>
+    <p><b>Current transaction ID:</b> {nn.JournalTransactionInfo.LastAppliedOrWrittenTxId}</p>
+    <table class="table" title="NameNode Journals">
+        <thead>
+        <tr>
+            <th>Journal Manager</th>
+            <th>State</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#nn.NameJournalStatus}
+        <tr>
+            <td>{manager}</td>
+            <td>{stream}</td>
+        </tr>
+        {/nn.NameJournalStatus}
+        </tbody>
+    </table>
 
-  {^UpgradeFinalized}
-     <p>Upgrade in progress. Not yet finalized.</p>
-  {/UpgradeFinalized}
-</div>
-{/if}
-
-{@eq key=nnstat.State value="active"}
-  {@if cond="{NumberOfMissingBlocks} > 0"}
-<div class="alert alert-dismissable alert-warning">
-  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-
-  <p>There are {NumberOfMissingBlocks} missing blocks. The following files may be corrupted:</p>
-  <br/>
-  <div class="well">
-    {#CorruptFiles}
-    {.}<br/>
-    {/CorruptFiles}
-  </div>
-  <p>Please check the logs or run fsck in order to identify the missing blocks. See the Hadoop FAQ for common causes and potential solutions.</p>
-</div>
-  {/if}
-{/eq}
-{/nn}
-
-<div class="page-header"><h1>Overview {#nnstat}<small>'{HostAndPort}' ({State})</small>{/nnstat}</h1></div>
-
-<table class="table table-bordered table-striped">
-{#HAInfo}
-  <tr><th>Namespace:</th><td>{Namespace}</td></tr>
-  <tr><th>Namenode ID:</th><td>{NamenodeID}</td></tr>
-{/HAInfo}
-{#nn}
-  <tr><th>Started:</th><td>{NNStarted}</td></tr>
-  <tr><th>Version:</th><td>{Version}</td></tr>
-  <tr><th>Compiled:</th><td>{CompileInfo}</td></tr>
-  <tr><th>Cluster ID:</th><td>{ClusterId}</td></tr>
-  <tr><th>Block Pool ID:</th><td>{BlockPoolId}</td></tr>
-{/nn}
-</table>
-
-<div class="page-header"><h1>Summary</h1></div>
-<p>
-  Security is {#nnstat}{#SecurityEnabled}on{:else}off{/SecurityEnabled}{/nnstat}.</p>
-<p>{#nn}{#Safemode}{.}{:else}Safemode is off.{/Safemode}{/nn}</p>
-
-<p>
-  {#fs}
-  {FilesTotal} files and directories, {BlocksTotal} blocks = {@math key="{FilesTotal}" method="add" operand="{BlocksTotal}"/} total filesystem object(s).
-  {#helper_fs_max_objects/}
-  {/fs}
-</p>
-{#mem.HeapMemoryUsage}
-<p>Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Heap Memory. Max Heap Memory is {@eq key=max value="-1" type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>
-{/mem.HeapMemoryUsage}
-
-{#mem.NonHeapMemoryUsage}
-<p>Non Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Commited Non Heap Memory. Max Non Heap Memory is {@eq key=max value="-1" type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>
-{/mem.NonHeapMemoryUsage}
-
-{#nn}
-<table class="table table-bordered table-striped">
-  <tr><th> Configured Capacity:</th><td>{Total|fmt_bytes}</td></tr>
-  <tr><th> DFS Used:</th><td>{Used|fmt_bytes} ({PercentUsed|fmt_percentage})</td></tr>
-  <tr><th> Non DFS Used:</th><td>{NonDfsUsedSpace|fmt_bytes}</td></tr>
-  <tr><th> DFS Remaining:</th><td>{Free|fmt_bytes} ({PercentRemaining|fmt_percentage})</td></tr>
-  <tr><th> Block Pool Used:</th><td>{BlockPoolUsedSpace|fmt_bytes} ({PercentBlockPoolUsed|fmt_percentage})</td></tr>
-  <tr><th> DataNodes usages% (Min/Median/Max/stdDev): </th>
-	<td>{#NodeUsage.nodeUsage}{min} / {median} / {max} / {stdDev}{/NodeUsage.nodeUsage}</td></tr>
-{/nn}
-
-{#fs}
-  <tr><th><a href="#tab-datanode">Live Nodes</a></th><td>{NumLiveDataNodes} (Decommissioned: {NumDecomLiveDataNodes})</td></tr>
-  <tr><th><a href="#tab-datanode">Dead Nodes</a></th><td>{NumDeadDataNodes} (Decommissioned: {NumDecomDeadDataNodes})</td></tr>
-  <tr><th><a href="#tab-datanode">Decommissioning Nodes</a></th><td>{NumDecommissioningDataNodes}</td></tr>
-  <tr><th><a href="#tab-datanode-volume-failures">Total Datanode Volume Failures</a></th><td>{VolumeFailuresTotal} ({EstimatedCapacityLostTotal|fmt_bytes})</td></tr>
-  {@eq key=nnstat.State value="active"}
-    <tr><th title="Excludes missing blocks.">Number of Under-Replicated Blocks</th><td>{UnderReplicatedBlocks}</td></tr>
-    <tr><th>Number of Blocks Pending Deletion</th><td>{PendingDeletionBlocks}</td></tr>
-  {/eq}
-  <tr><th>Block Deletion Start Time</th><td>{BlockDeletionStartTime|date_tostring}</td></tr>
-{/fs}
-
-{#fsn}
-  <tr><th>Last Checkpoint Time</th><td>{@if cond="{LastCheckpointTime} === 0"}Never{:else}{LastCheckpointTime|date_tostring}{/if}</td></tr>
-{/fsn}
-</table>
-
-<div class="page-header"><h1>NameNode Journal Status</h1></div>
-<p><b>Current transaction ID:</b> {nn.JournalTransactionInfo.LastAppliedOrWrittenTxId}</p>
-<table class="table" title="NameNode Journals">
-  <thead>
-	<tr><th>Journal Manager</th><th>State</th></tr>
-  </thead>
-  <tbody>
-	{#nn.NameJournalStatus}
-	<tr><td>{manager}</td><td>{stream}</td></tr>
-	{/nn.NameJournalStatus}
-  </tbody>
-</table>
-
-<div class="page-header"><h1>NameNode Storage</h1></div>
-<table class="table" title="NameNode Storage">
-  <thead><tr><td><b>Storage Directory</b></td><td><b>Type</b></td><td><b>State</b></td></tr></thead>
-  {#nn.NameDirStatuses}
-  {#active}{#helper_dir_status type="Active"/}{/active}
-  {#failed}{#helper_dir_status type="Failed"/}{/failed}
-  {/nn.NameDirStatuses}
-</table>
-<div class="page-header"><h1>DFS Storage Types</h1></div>
-<small>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Storage Type</th>
-      <th>Configured Capacity</th>
-      <th>Capacity Used</th>
-      <th>Capacity Remaining</th>
-      <th>Block Pool Used</th>
-      <th>Nodes In Service</th>
-    </tr>
-  </thead>
-  {#blockstats.StorageTypeStats}
-  <tr>
-    <td>{key}</td>
-    <td>{value.capacityTotal|fmt_bytes}</td>
-    <td>{value.capacityUsed|fmt_bytes} ({value.capacityUsedPercentage|fmt_percentage})</td>
-    <td>{value.capacityRemaining|fmt_bytes} ({value.capacityRemainingPercentage|fmt_percentage})</td>
-    <td>{value.blockPoolUsed|fmt_bytes}</td>
-    <td>{value.nodesInService}</td>
-  </tr>
-  {/blockstats.StorageTypeStats}
-</table>
-</small>
+    <div class="page-header">
+        <h1>NameNode Storage</h1>
+    </div>
+    <table class="table" title="NameNode Storage">
+        <thead>
+        <tr>
+            <td><b>Storage Directory</b></td>
+            <td><b>Type</b></td>
+            <td><b>State</b></td>
+        </tr>
+        </thead>
+        {#nn.NameDirStatuses} {#active}{#helper_dir_status type="Active"/}{/active} {#failed}{#helper_dir_status type="Failed"/}{/failed}
+        {/nn.NameDirStatuses}
+    </table>
+    <div class="page-header">
+        <h1>DFS Storage Types</h1>
+    </div>
+    <small>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Storage Type</th>
+                <th>Configured Capacity</th>
+                <th>Capacity Used</th>
+                <th>Capacity Remaining</th>
+                <th>Block Pool Used</th>
+                <th>Nodes In Service</th>
+            </tr>
+            </thead>
+            {#blockstats.StorageTypeStats}
+            <tr>
+                <td>{key}</td>
+                <td>{value.capacityTotal|fmt_bytes}</td>
+                <td>{value.capacityUsed|fmt_bytes} ({value.capacityUsedPercentage|fmt_percentage})</td>
+                <td>{value.capacityRemaining|fmt_bytes} ({value.capacityRemainingPercentage|fmt_percentage})</td>
+                <td>{value.blockPoolUsed|fmt_bytes}</td>
+                <td>{value.nodesInService}</td>
+            </tr>
+            {/blockstats.StorageTypeStats}
+        </table>
+    </small>
 </script>
 
 <script type="text/x-dust-template" id="tmpl-snapshot">
-<div class="page-header"><h1>Snapshot Summary</h1></div>
-<div class="page-header"><h1><small>Snapshottable directories: {@size key=SnapshottableDirectories}{/size}</small></div>
-<small>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Path</th>
-      <th>Snapshot Number</th>
-      <th>Snapshot Quota</th>
-      <th>Modification Time</th>
-      <th>Permission</th>
-      <th>Owner</th>
-      <th>Group</th>
-    </tr>
-  </thead>
-  {#SnapshottableDirectories}
-  <tr>
-    <td>{path}</td>
-    <td>{snapshotNumber}</td>
-    <td>{snapshotQuota}</td>
-    <td>{modificationTime|date_tostring}</td>
-    <td>{permission|helper_to_permission}</td>
-    <td>{owner}</td>
-    <td>{group}</td>
-  </tr>
-  {/SnapshottableDirectories}
-</table>
-</small>
+    <div class="page-header">
+        <h1>Snapshot Summary</h1>
+    </div>
+    <div class="page-header">
+        <h1>
+            <small>Snapshottable directories: {@size key=SnapshottableDirectories}{/size}</small>
+    </div>
+    <small>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Path</th>
+                <th>Snapshot Number</th>
+                <th>Snapshot Quota</th>
+                <th>Modification Time</th>
+                <th>Permission</th>
+                <th>Owner</th>
+                <th>Group</th>
+            </tr>
+            </thead>
+            {#SnapshottableDirectories}
+            <tr>
+                <td>{path}</td>
+                <td>{snapshotNumber}</td>
+                <td>{snapshotQuota}</td>
+                <td>{modificationTime|date_tostring}</td>
+                <td>{permission|helper_to_permission}</td>
+                <td>{owner}</td>
+                <td>{group}</td>
+            </tr>
+            {/SnapshottableDirectories}
+        </table>
+    </small>
 
-<div class="page-header"><h1><small>Snapshotted directories: {@size key=Snapshots}{/size}</small></div>
+    <div class="page-header">
+        <h1>
+            <small>Snapshotted directories: {@size key=Snapshots}{/size}</small>
+    </div>
 
-<small>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Snapshot ID</th>
-      <th>Snapshot Directory</th>
-      <th>Modification Time</th>
-    </tr>
-  </thead>
-  {#Snapshots}
-  <tr>
-    <td>{snapshotID}</td>
-    <td>{snapshotDirectory}</td>
-    <td>{modificationTime|date_tostring}</td>
-  </tr>
-  {/Snapshots}
-</table>
-</small>
+    <small>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Snapshot ID</th>
+                <th>Snapshot Directory</th>
+                <th>Modification Time</th>
+            </tr>
+            </thead>
+            {#Snapshots}
+            <tr>
+                <td>{snapshotID}</td>
+                <td>{snapshotDirectory}</td>
+                <td>{modificationTime|date_tostring}</td>
+            </tr>
+            {/Snapshots}
+        </table>
+    </small>
 </script>
 
 <script type="text/x-dust-template" id="tmpl-datanode">
-<div class="page-header"><h1>Datanode Information</h1></div>
-<div>
-  <ul class="dfshealth-node-legend">
-    <li class="dfshealth-node-icon dfshealth-node-alive">In service</li>
-    <li class="dfshealth-node-icon dfshealth-node-down">Down</li>
-    <li class="dfshealth-node-icon dfshealth-node-decommissioned">Decommissioned</li>
-    <li class="dfshealth-node-icon dfshealth-node-down-decommissioned">Decommissioned &amp; dead</li>
-  </ul>
-</div>
-<div class="page-header"><h1><small>In operation</small></h1></div>
-<small>
-<table class="table" id="table-datanodes">
-  <thead>
-    <tr>
-      <th>Node</th>
-      <th>Http Address</th>
-      <th>Last contact</th>
-      <th>Last Block Report</th>
-      <th style="width:180px; text-align:center">Capacity</th>
-      <th>Blocks</th>
-      <th>Block pool used</th>
-      <th>Version</th>
-    </tr>
-  </thead>
-  {#LiveNodes}
-  <tr>
-    <td ng-value="{state}-{name}" class="dfshealth-node-icon dfshealth-node-{state}">{name} ({xferaddr})</td>
-    <td ng-value="{state}-{name}"><a href='//{dnWebAddress}'>{dnWebAddress}</a></td>
-    <td ng-value="{lastContact}">{lastContact}s</td>
-    <td ng-value="{lastBlockReport}">{lastBlockReport}m</td>
-    <td ng-value="{usedPercentage}">
-      <div>
-        <div style="display:inline-block; float: left; padding-right: 10px;">{capacity|fmt_bytes}</div>
-        <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: {nonDfsUsedSpace|fmt_bytes}, Used: {used|fmt_bytes}">
-          <div class="progress-bar {#helper_usage_bar value="{usedPercentage}"/}" style="width: {usedPercentage}%">
-          </div>
-        </div>
-      </div>
-    </td>
-    <td title="Blocks Scheduled : {blockScheduled}">{numBlocks}</td>
-    <td ng-value="{blockPoolUsedPercent}">{blockPoolUsed|fmt_bytes} ({blockPoolUsedPercent|fmt_percentage})</td>
-    <td>{version}</td>
-  </tr>
-  {/LiveNodes}
-  {#DeadNodes}
-  <tr class="danger">
-    <td ng-value="{state}-{name}" class="dfshealth-node-icon dfshealth-node-{state}">{name} ({xferaddr})</td>
-    <td></td>
-    <td>{#helper_relative_time value="{lastContact}"/}</td>
-    <td></td>
-    <td></td>
-    <td></td>
-    <td></td>
-  </tr>
-  {/DeadNodes}
-</table>
-</small>
+    <div class="page-header">
+        <h1>Datanode Information</h1>
+    </div>
+    <div>
+        <ul class="dfshealth-node-legend">
+            <li class="dfshealth-node-icon dfshealth-node-alive">In service</li>
+            <li class="dfshealth-node-icon dfshealth-node-down">Down</li>
+            <li class="dfshealth-node-icon dfshealth-node-decommissioned">Decommissioned</li>
+            <li class="dfshealth-node-icon dfshealth-node-down-decommissioned">Decommissioned &amp; dead</li>
+        </ul>
+    </div>
+    <div class="page-header">
+        <h1>
+            <small>In operation</small>
+        </h1>
+    </div>
+    <small>
+        <table class="table" id="table-datanodes">
+            <thead>
+            <tr>
+                <th>Node</th>
+                <th>Http Address</th>
+                <th>Last contact</th>
+                <th>Last Block Report</th>
+                <th style="width:180px; text-align:center">Capacity</th>
+                <th>Blocks</th>
+                <th>Block pool used</th>
+                <th>Version</th>
+            </tr>
+            </thead>
+            {#LiveNodes}
+            <tr>
+                <td ng-value="{state}-{name}" class="dfshealth-node-icon dfshealth-node-{state}">{name} ({xferaddr})</td>
+                <td ng-value="{state}-{name}"><a href='//{dnWebAddress}'>{dnWebAddress}</a></td>
+                <td ng-value="{lastContact}">{lastContact}s</td>
+                <td ng-value="{lastBlockReport}">{lastBlockReport}m</td>
+                <td ng-value="{usedPercentage}">
+                    <div>
+                        <div style="display:inline-block; float: left; padding-right: 10px;">{capacity|fmt_bytes}</div>
+                        <div class="clearfix progress dfshealth-node-capacity-bar" title="Non DFS: {nonDfsUsedSpace|fmt_bytes}, Used: {used|fmt_bytes}">
+                            <div class="progress-bar {#helper_usage_bar value=" {usedPercentage}
+                            "/}" style="width: {usedPercentage}%">
+                        </div>
+                    </div>
+                    </div>
+                </td>
+                <td title="Blocks Scheduled : {blockScheduled}">{numBlocks}</td>
+                <td ng-value="{blockPoolUsedPercent}">{blockPoolUsed|fmt_bytes} ({blockPoolUsedPercent|fmt_percentage})</td>
+                <td>{version}</td>
+            </tr>
+            {/LiveNodes}
+            {#DeadNodes}
+            <tr class="danger">
+                <td ng-value="{state}-{name}" class="dfshealth-node-icon dfshealth-node-{state}">{name} ({xferaddr})</td>
+                <td></td>
+                <td>{#helper_relative_time value="{lastContact}"/}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            {/DeadNodes}
+        </table>
+    </small>
 
-<div class="page-header"><h1><small>Decomissioning</small></h1></div>
-<small>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Node</th>
-      <th>Last contact</th>
-      <th>Under replicated blocks</th>
-      <th>Blocks with no live replicas</th>
-      <th>Under Replicated Blocks <br/>In files under construction</th>
-    </tr>
-  </thead>
-  {#DecomNodes}
-  <tr>
-    <td>{name} ({xferaddr})</td>
-    <td>{lastContact}</td>
-    <td>{underReplicatedBlocks}</td>
-    <td>{decommissionOnlyReplicas}</td>
-    <td>{underReplicateInOpenFiles}</td>
-  </tr>
-  {/DecomNodes}
-</table>
-</small>
+    <div class="page-header">
+        <h1>
+            <small>Decomissioning</small>
+        </h1>
+    </div>
+    <small>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Node</th>
+                <th>Last contact</th>
+                <th>Under replicated blocks</th>
+                <th>Blocks with no live replicas</th>
+                <th>Under Replicated Blocks <br/>In files under construction</th>
+            </tr>
+            </thead>
+            {#DecomNodes}
+            <tr>
+                <td>{name} ({xferaddr})</td>
+                <td>{lastContact}</td>
+                <td>{underReplicatedBlocks}</td>
+                <td>{decommissionOnlyReplicas}</td>
+                <td>{underReplicateInOpenFiles}</td>
+            </tr>
+            {/DecomNodes}
+        </table>
+    </small>
 </script>
 
 <script type="text/x-dust-template" id="tmpl-datanode-volume-failures">
-<div class="page-header"><h1>Datanode Volume Failures</h1></div>
-<small>
-{?LiveNodes}
-<table class="table">
-  <thead>
-    <tr>
-      <th>Node</th>
-      <th>Last Failure Date</th>
-      <th>Failed Volumes</th>
-      <th>Estimated Capacity Lost</th>
-      <th>Failed Storage Locations</th>
-    </tr>
-  </thead>
-  {#LiveNodes}
-  <tr>
-    <td>{name} ({xferaddr})</td>
-    <td>{#helper_date_tostring value="{lastVolumeFailureDate}"/}</td>
-    <td>{volfails}</td>
-    <td>{estimatedCapacityLostTotal|fmt_bytes}</td>
-    <td>{#failedStorageLocations}{.}{@sep}<br />{/sep}{/failedStorageLocations}</td>
-  </tr>
-  {/LiveNodes}
-</table>
-{:else}
-There are no reported volume failures.
-{/LiveNodes}
-</small>
+    <div class="page-header">
+        <h1>Datanode Volume Failures</h1>
+    </div>
+    <small>
+        {?LiveNodes}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Node</th>
+                <th>Last Failure Date</th>
+                <th>Failed Volumes</th>
+                <th>Estimated Capacity Lost</th>
+                <th>Failed Storage Locations</th>
+            </tr>
+            </thead>
+            {#LiveNodes}
+            <tr>
+                <td>{name} ({xferaddr})</td>
+                <td>{#helper_date_tostring value="{lastVolumeFailureDate}"/}</td>
+                <td>{volfails}</td>
+                <td>{estimatedCapacityLostTotal|fmt_bytes}</td>
+                <td>{#failedStorageLocations}{.}{@sep}<br/>{/sep}{/failedStorageLocations}</td>
+            </tr>
+            {/LiveNodes}
+        </table>
+        {:else}
+        There are no reported volume failures.
+        {/LiveNodes}
+    </small>
 </script>
 
 <script type="text/x-dust-template" id="tmpl-startup-progress">
-<div class="page-header"><h1>Startup Progress</h1></div>
-<p>Elapsed Time: {elapsedTime|fmt_time}, Percent Complete: {percentComplete|fmt_percentage}</p>
-<table class="table">
-  <thead>
-	<tr class="active">
-	  <th>Phase</th>
-	  <th style="text-align:center">Completion</th>
-	  <th style="text-align:center">Elapsed Time</th>
-	</tr>
-  </thead>
-  <tbody>
-	{#phases}
-	<tr class="phase">
-	  <td class="startupdesc">{desc} {file} {size|fmt_bytes}</td>
-	  <td style="text-align:center">{percentComplete|fmt_percentage}</td>
-	  <td style="text-align:center">{elapsedTime|fmt_time}</td>
-	</tr>
-	{#steps root_file=file}
-	<tr class="step">
-	  <td class="startupdesc">{stepDesc} {stepFile} {stepSize|fmt_bytes} ({count}/{total})</td>
-	  <td style="text-align:center">{percentComplete|fmt_percentage}</td>
-	  <td></td>
-	</tr>
-	{/steps}
-	{/phases}
-  </tbody>
-</table>
+    <div class="page-header">
+        <h1>Startup Progress</h1>
+    </div>
+    <p>Elapsed Time: {elapsedTime|fmt_time}, Percent Complete: {percentComplete|fmt_percentage}</p>
+    <table class="table">
+        <thead>
+        <tr class="active">
+            <th>Phase</th>
+            <th style="text-align:center">Completion</th>
+            <th style="text-align:center">Elapsed Time</th>
+        </tr>
+        </thead>
+        <tbody>
+        {#phases}
+        <tr class="phase">
+            <td class="startupdesc">{desc} {file} {size|fmt_bytes}</td>
+            <td style="text-align:center">{percentComplete|fmt_percentage}</td>
+            <td style="text-align:center">{elapsedTime|fmt_time}</td>
+        </tr>
+        {#steps root_file=file}
+        <tr class="step">
+            <td class="startupdesc">{stepDesc} {stepFile} {stepSize|fmt_bytes} ({count}/{total})</td>
+            <td style="text-align:center">{percentComplete|fmt_percentage}</td>
+            <td></td>
+        </tr>
+        {/steps} {/phases}
+        </tbody>
+    </table>
 </script>
 
 <script type="text/javascript" src="/static/jquery-1.10.2.min.js">
-</script><script type="text/javascript" src="/static/jquery.dataTables.min.js">
-</script><script type="text/javascript" src="/static/bootstrap-3.0.2/js/bootstrap.min.js">
-</script><script type="text/javascript" src="/static/dataTables.bootstrap.js">
-</script><script type="text/javascript" src="/static/moment.min.js">
-</script><script type="text/javascript" src="/static/moment.min.js">
-</script><script type="text/javascript" src="/static/dust-full-2.0.0.min.js">
-</script><script type="text/javascript" src="/static/dust-helpers-1.1.1.min.js">
-</script><script type="text/javascript" src="/static/dfs-dust.js">
-</script><script type="text/javascript" src="dfshealth.js">
+
 </script>
+<script type="text/javascript" src="/static/jquery.dataTables.min.js">
+
+</script>
+<script type="text/javascript" src="/static/bootstrap-3.0.2/js/bootstrap.min.js">
+
+</script>
+<script type="text/javascript" src="/static/dataTables.bootstrap.js">
+
+</script>
+<script type="text/javascript" src="/static/moment.min.js">
+
+</script>
+<script type="text/javascript" src="/static/moment.min.js">
+
+</script>
+<script type="text/javascript" src="/static/dust-full-2.0.0.min.js">
+
+</script>
+<script type="text/javascript" src="/static/dust-helpers-1.1.1.min.js">
+
+</script>
+<script type="text/javascript" src="/static/dfs-dust.js">
+
+</script>
+<script type="text/javascript" src="dfshealth.js">
+
+</script>
+
+
 </body>
+
 </html>
