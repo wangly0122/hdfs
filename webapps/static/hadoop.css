@@ -278,13 +278,17 @@ header.bs-docs-nav, header.bs-docs-nav .navbar-brand {
 }
 
 .table th {
-	font-size: 12px;
+	font-size: 14px;
 }
 .table td {
-	font-size: 12px;
+	font-size: 14px;
 }
 table.dataTable thead > tr > th {
 	padding-right: 10px;
+}
+.table>tbody>tr>td,.table>thead>tr>th {
+	padding: 0;
+	line-height: 3em;
 }
 .progress {
 	height: 8px;
@@ -299,4 +303,11 @@ table.dataTable thead > tr > th {
 .iinput {
 	width: 97%;
 	margin-left: 1.5%;
+}
+
+@media (min-width: 1200px) {
+	.container {
+		width: 100%;
+		padding: 0 40px;
+	}
 }
