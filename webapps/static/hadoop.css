@@ -294,6 +294,7 @@ table.dataTable thead > tr > th {
 	height: 8px;
 	display: inline-block;
 	vertical-align: middle;
+  margin-top: 18px;
 }
 .ilabel {
 	display: inline-block;
