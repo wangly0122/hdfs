@@ -10,7 +10,6 @@
 
 <body>
 <div class="container">
-	<h1 class="ititle">Namenode 信息</h1>
     <div id="alert-panel">
         <div class="alert alert-danger">
             <button type="button" class="close" onclick="$('#alert-panel').hide();">×</button>
@@ -19,7 +18,7 @@
     </div>
 	
     <div class="tab-content hideheader">
-        <div class="tab-pane" id="tab-overview">
+        <div class="tab-pane active" id="tab-overview">
         </div>
         <div class="tab-pane active" id="tab-datanode">
         </div>
@@ -88,7 +87,8 @@
     {/eq}
     {/nn}
 
-    <div class="page-header"><h1>Overview {#nnstat}<small>'{HostAndPort}' ({State})</small>{/nnstat}</h1></div>
+
+    <div class="page-header"><h1 class="ititle">Namenode 信息</h1><br /><h1>概述 {#nnstat}<small>'{HostAndPort}' ({State})</small>{/nnstat}</h1></div>
 
     <table class="table table-bordered table-striped">
         {#HAInfo}
@@ -96,66 +96,66 @@
         <tr><th>Namenode ID:</th><td>{NamenodeID}</td></tr>
         {/HAInfo}
         {#nn}
-        <tr><th>Started:</th><td>{NNStarted}</td></tr>
-        <tr><th>Version:</th><td>{Version}</td></tr>
-        <tr><th>Compiled:</th><td>{CompileInfo}</td></tr>
-        <tr><th>Cluster ID:</th><td>{ClusterId}</td></tr>
-        <tr><th>Block Pool ID:</th><td>{BlockPoolId}</td></tr>
+        <tr><th>开始:</th><td>{NNStarted}</td></tr>
+        <tr><th>版本:</th><td>{Version}</td></tr>
+        <tr><th>编译:</th><td>{CompileInfo}</td></tr>
+        <tr><th>集群 ID:</th><td>{ClusterId}</td></tr>
+        <tr><th>Block池 ID:</th><td>{BlockPoolId}</td></tr>
         {/nn}
     </table>
 
-    <div class="page-header"><h1>Summary</h1></div>
-    <p>
-        Security is {#nnstat}{#SecurityEnabled}on{:else}off{/SecurityEnabled}{/nnstat}.</p>
-    <p>{#nn}{#Safemode}{.}{:else}Safemode is off.{/Safemode}{/nn}</p>
+    <div class="page-header"><h1>总结</h1></div>
+    <!--<p>-->
+        <!--Security is {#nnstat}{#SecurityEnabled}on{:else}off{/SecurityEnabled}{/nnstat}.</p>-->
+    <!--<p>{#nn}{#Safemode}{.}{:else}Safemode is off.{/Safemode}{/nn}</p>-->
 
-    <p>
-        {#fs}
-        {FilesTotal} files and directories, {BlocksTotal} blocks = {@math key="{FilesTotal}" method="add" operand="{BlocksTotal}"/} total filesystem object(s).
-        {#helper_fs_max_objects/}
-        {/fs}
-    </p>
-    {#mem.HeapMemoryUsage}
-    <p>Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Heap Memory. Max Heap Memory is {@eq key=max value="-1" type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>
-    {/mem.HeapMemoryUsage}
+    <!--<p>-->
+        <!--{#fs}-->
+        <!--{FilesTotal} files and directories, {BlocksTotal} blocks = {@math key="{FilesTotal}" method="add" operand="{BlocksTotal}"/} total filesystem object(s).-->
+        <!--{#helper_fs_max_objects/}-->
+        <!--{/fs}-->
+    <!--</p>-->
+    <!--{#mem.HeapMemoryUsage}-->
+    <!--<p>Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Heap Memory. Max Heap Memory is {@eq key=max value="-1" type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>-->
+    <!--{/mem.HeapMemoryUsage}-->
 
-    {#mem.NonHeapMemoryUsage}
-    <p>Non Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Commited Non Heap Memory. Max Non Heap Memory is {@eq key=max value="-1" type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>
-    {/mem.NonHeapMemoryUsage}
+    <!--{#mem.NonHeapMemoryUsage}-->
+    <!--<p>Non Heap Memory used {used|fmt_bytes} of {committed|fmt_bytes} Commited Non Heap Memory. Max Non Heap Memory is {@eq key=max value="-1" type="number"}&ltunbonded&gt{:else}{max|fmt_bytes}{/eq}.</p>-->
+    <!--{/mem.NonHeapMemoryUsage}-->
 
-    {#nn}
+    <!--{#nn}-->
     <table class="table table-bordered table-striped">
-        <tr><th> Configured Capacity:</th><td>{Total|fmt_bytes}</td></tr>
-        <tr><th> DFS Used:</th><td>{Used|fmt_bytes} ({PercentUsed|fmt_percentage})</td></tr>
-        <tr><th> Non DFS Used:</th><td>{NonDfsUsedSpace|fmt_bytes}</td></tr>
-        <tr><th> DFS Remaining:</th><td>{Free|fmt_bytes} ({PercentRemaining|fmt_percentage})</td></tr>
-        <tr><th> Block Pool Used:</th><td>{BlockPoolUsedSpace|fmt_bytes} ({PercentBlockPoolUsed|fmt_percentage})</td></tr>
-        <tr><th> DataNodes usages% (Min/Median/Max/stdDev): </th>
+        <tr><th> 配置容量:</th><td>{Total|fmt_bytes}</td></tr>
+        <tr><th> DFS已使用:</th><td>{Used|fmt_bytes} ({PercentUsed|fmt_percentage})</td></tr>
+        <tr><th> Non DFS已使用:</th><td>{NonDfsUsedSpace|fmt_bytes}</td></tr>
+        <tr><th> DFS 剩余:</th><td>{Free|fmt_bytes} ({PercentRemaining|fmt_percentage})</td></tr>
+        <tr><th> Block池已使用:</th><td>{BlockPoolUsedSpace|fmt_bytes} ({PercentBlockPoolUsed|fmt_percentage})</td></tr>
+        <tr><th> 数据节点利用率% (最小/中值/最大/标准差): </th>
             <td>{#NodeUsage.nodeUsage}{min} / {median} / {max} / {stdDev}{/NodeUsage.nodeUsage}</td></tr>
         {/nn}
 
         {#fs}
-        <tr><th><a href="#tab-datanode">Live Nodes</a></th><td>{NumLiveDataNodes} (Decommissioned: {NumDecomLiveDataNodes})</td></tr>
-        <tr><th><a href="#tab-datanode">Dead Nodes</a></th><td>{NumDeadDataNodes} (Decommissioned: {NumDecomDeadDataNodes})</td></tr>
-        <tr><th><a href="#tab-datanode">Decommissioning Nodes</a></th><td>{NumDecommissioningDataNodes}</td></tr>
-        <tr><th><a href="#tab-datanode-volume-failures">Total Datanode Volume Failures</a></th><td>{VolumeFailuresTotal} ({EstimatedCapacityLostTotal|fmt_bytes})</td></tr>
+        <tr><th><a href="#tab-datanode">活跃节点数</a></th><td>{NumLiveDataNodes} (Decommissioned: {NumDecomLiveDataNodes})</td></tr>
+        <tr><th><a href="#tab-datanode">异常节点数</a></th><td>{NumDeadDataNodes} (Decommissioned: {NumDecomDeadDataNodes})</td></tr>
+        <tr><th><a href="#tab-datanode">停用节点数</a></th><td>{NumDecommissioningDataNodes}</td></tr>
+        <tr><th><a href="#tab-datanode-volume-failures">数据节点卷失败总数</a></th><td>{VolumeFailuresTotal} ({EstimatedCapacityLostTotal|fmt_bytes})</td></tr>
         {@eq key=nnstat.State value="active"}
-        <tr><th title="Excludes missing blocks.">Number of Under-Replicated Blocks</th><td>{UnderReplicatedBlocks}</td></tr>
-        <tr><th>Number of Blocks Pending Deletion</th><td>{PendingDeletionBlocks}</td></tr>
+        <tr><th title="Excludes missing blocks.">复制不足的块数</th><td>{UnderReplicatedBlocks}</td></tr>
+        <tr><th>挂起删除的块数</th><td>{PendingDeletionBlocks}</td></tr>
         {/eq}
-        <tr><th>Block Deletion Start Time</th><td>{BlockDeletionStartTime|date_tostring}</td></tr>
+        <tr><th>块删除开始时间</th><td>{BlockDeletionStartTime|date_tostring}</td></tr>
         {/fs}
 
         {#fsn}
-        <tr><th>Last Checkpoint Time</th><td>{@if cond="{LastCheckpointTime} === 0"}Never{:else}{LastCheckpointTime|date_tostring}{/if}</td></tr>
+        <tr><th>上次检查点时间</th><td>{@if cond="{LastCheckpointTime} === 0"}Never{:else}{LastCheckpointTime|date_tostring}{/if}</td></tr>
         {/fsn}
     </table>
 
-    <div class="page-header"><h1>NameNode Journal Status</h1></div>
-    <p><b>Current transaction ID:</b> {nn.JournalTransactionInfo.LastAppliedOrWrittenTxId}</p>
+    <div class="page-header"><h1>数据节点详细状态</h1></div>
+    <p><b>当前事物 ID:</b> {nn.JournalTransactionInfo.LastAppliedOrWrittenTxId}</p>
     <table class="table" title="NameNode Journals">
         <thead>
-        <tr><th>Journal Manager</th><th>State</th></tr>
+        <tr><th>管理节点</th><th>状态</th></tr>
         </thead>
         <tbody>
         {#nn.NameJournalStatus}
@@ -164,25 +164,25 @@
         </tbody>
     </table>
 
-    <div class="page-header"><h1>NameNode Storage</h1></div>
+    <div class="page-header"><h1>数据节点存储</h1></div>
     <table class="table" title="NameNode Storage">
-        <thead><tr><td><b>Storage Directory</b></td><td><b>Type</b></td><td><b>State</b></td></tr></thead>
+        <thead><tr><td><b>存储目录</b></td><td><b>类型</b></td><td><b>状态</b></td></tr></thead>
         {#nn.NameDirStatuses}
         {#active}{#helper_dir_status type="Active"/}{/active}
         {#failed}{#helper_dir_status type="Failed"/}{/failed}
         {/nn.NameDirStatuses}
     </table>
-    <div class="page-header"><h1>DFS Storage Types</h1></div>
+    <div class="page-header"><h1>DFS存储类型</h1></div>
     <small>
         <table class="table">
             <thead>
             <tr>
-            <th>Storage Type</th>
-            <th>Configured Capacity</th>
-            <th>Capacity Used</th>
-            <th>Capacity Remaining</th>
-            <th>Block Pool Used</th>
-            <th>Nodes In Service</th>
+            <th>存储类型</th>
+            <th>配置容量</th>
+            <th>已使用容量</th>
+            <th>剩余容量</th>
+            <th>Block池已使用</th>
+            <th>服务中的节点数</th>
             </tr>
             </thead>
             {#blockstats.StorageTypeStats}
@@ -262,6 +262,8 @@
     <!--</ul>-->
     <!--</div>-->
     <!--<div class="page-header"><h1><small>In operation</small></h1></div>-->
+    <br />
+    <h1 class="ititle">Datanode 信息</h1>
     <small>
         <table class="table" id="table-datanodes">
             <thead>

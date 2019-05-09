@@ -320,27 +320,29 @@
   }
 
   function load_page() {
-    var hash = window.location.hash;
-    switch(hash) {
-      case "#tab-datanode":
-        load_datanode_info();
-        break;
-      case "#tab-datanode-volume-failures":
-        load_datanode_volume_failures();
-        break;
-      case "#tab-snapshot":
-        load_snapshot_info();
-        break;
-      case "#tab-startup-progress":
-        load_startup_progress();
-        break;
-      case "#tab-overview":
-        load_overview();
-        break;
-      default:
-        window.location.hash = "tab-overview";
-        break;
-    }
+    // var hash = window.location.hash;
+    // switch(hash) {
+    //   case "#tab-datanode":
+    //     load_datanode_info();
+    //     break;
+    //   case "#tab-datanode-volume-failures":
+    //     load_datanode_volume_failures();
+    //     break;
+    //   case "#tab-snapshot":
+    //     load_snapshot_info();
+    //     break;
+    //   case "#tab-startup-progress":
+    //     load_startup_progress();
+    //     break;
+    //   case "#tab-overview":
+    //     load_overview();
+    //     break;
+    //   default:
+    //     window.location.hash = "tab-overview";
+    //     break;
+    // }
+    load_datanode_info();
+    load_overview();
   }
   load_page();
 
