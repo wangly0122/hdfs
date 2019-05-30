@@ -16,10 +16,37 @@
 */
 
 body {
-  background-color : #ffffff;
+    color: #fff;
+  background-color : #114bda;
   font-family : sans-serif;
 }
-
+h1 small, h2 small, h3 small, h1 .small, h2 .small, h3 .small{
+    color: #fff;
+}
+.table-striped>tbody>tr:nth-child(odd)>td, .table-striped>tbody>tr:nth-child(odd)>th {
+    background: transparent;
+}
+a {
+    color: #0d2f6e;
+}
+.form-control, .btn-default {
+    background: transparent;
+    color: #fff;
+}
+table.dataTable thead .sorting:after {
+    opacity: 1;
+    content: "\e150";
+}
+table.dataTable thead .sorting_asc:after {
+    content: "\e155";
+}
+table.dataTable thead .sorting:after, table.dataTable thead .sorting_asc:after, table.dataTable thead .sorting_desc:after {
+    opacity: 1;
+}
+.pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus {
+    background: #114bda;
+    color: #fff;
+}
 .small {
   font-size : smaller;
 }
