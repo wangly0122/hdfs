@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d70d08bd-ed67-44ec-9d9e-259a6a68d32d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webapps/static.zip" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webapps/hdfs/bak/dfshealth.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webapps/hdfs/bak/dfshealth.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webapps/hdfs/bak/explorer.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/webapps/hdfs/bak/explorer.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -267,7 +261,7 @@
       <workItem from="1556177702272" duration="859000" />
       <workItem from="1557370923124" duration="3949000" />
       <workItem from="1557394405551" duration="1917000" />
-      <workItem from="1559529638690" duration="71000" />
+      <workItem from="1559529638690" duration="120000" />
     </task>
     <task id="LOCAL-00001" summary="dcdec">
       <created>1557393229221</created>
@@ -276,11 +270,18 @@
       <option name="project" value="LOCAL" />
       <updated>1557393229221</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="版本兼容">
+      <created>1559529730265</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1559529730265</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="8538000" />
+    <option name="totallyTimeSpent" value="8587000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -391,7 +392,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dcdec" />
-    <option name="LAST_COMMIT_MESSAGE" value="dcdec" />
+    <MESSAGE value="版本兼容" />
+    <option name="LAST_COMMIT_MESSAGE" value="版本兼容" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
